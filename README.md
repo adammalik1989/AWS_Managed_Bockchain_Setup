@@ -152,7 +152,7 @@ source fabric-exports.sh
 
 The  configtx contains the channel configuration.
 
-Update the configtx channel configuration. The Name and ID fields should be update with member ID.
+Update the configtx channel configuration. You have to update the member ID in the file which looks like the file given below.
 
 All the IDs like member ID you will get from AWS Managed Blockchain Service ( Step 1 explained).
 
