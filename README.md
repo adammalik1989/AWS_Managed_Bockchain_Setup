@@ -6,7 +6,7 @@ There are two components here we will work on:
 * AWS Managed Blockchain Service 
 * Blockchain Client Node.
 
-PICTURE of aAWS architecture
+PICTURE of AWS architecture
 
 
 
@@ -15,8 +15,7 @@ PICTURE of aAWS architecture
 ## Setting up the Client Node  ( for e.g. BMW AG)
 
 
-I have used the CLoud9 IDE by AWS because In the beginning I was working in the private VPC and there was no easy way to connect to tthe 
-to the private VPC.
+I have used the Cloud9 terminal by AWS  throughout the setup because my EC2 instance is in public VPC working in the private VPC and there was no easy way to connect to the private VPC.
 
 Step 1: (Cloud9 instance setup, not mandatory.I will just use its terminal.)
 
