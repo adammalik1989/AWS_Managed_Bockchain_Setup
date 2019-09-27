@@ -302,7 +302,7 @@ Check that the block file now exists:
 
 
 
-# Step5 Join your peer node the channel 
+## Step5 Join your peer node the channel 
 
 
 
@@ -408,7 +408,7 @@ You should see:
 
 ```
 2018-11-26 21:45:20.935 UTC [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200 
-``
+```
 
 
 
@@ -436,7 +436,7 @@ You should see:
 
 
 
-#
+
 
 
 
