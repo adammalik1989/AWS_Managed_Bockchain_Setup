@@ -52,6 +52,14 @@ export NETWORKID=<the network ID you created in Step1, from the Amazon Managed B
 export NETWORKNAME=<the name you gave the network>
 ```
 
+Now check the VPC endpoint and print it out.
+
+```
+export VPCENDPOINTSERVICENAME=$(aws managedblockchain get-network --region $REGION --network-id $NETWORKID --query 'Network.VpcEndpointServiceName' --output text)
+echo $VPCENDPOINTSERVICENAME
+```
+
+
 
 
 
