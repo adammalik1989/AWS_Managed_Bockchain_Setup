@@ -94,7 +94,40 @@ cp templates/exports-template.sh fabric-exports.sh
 vi fabric-exports.sh
 ```
 
-Now update the export statements and 
+Now update the export statements and then source the file again.
+
+````cd ~/non-profit-blockchain/ngo-fabric
+source fabric-exports.sh
+
+````
+
+Sourcing the file will do two things:
+
+* export the necessary ENV variables
+* create another file which contains the export values you need to use when working with a Fabric peer node. This can be    found in the file: `~/peer-exports.sh.` You will see how to use this in a later step.
+
+
+Check the source worked by typing the given command:
+
+```
+$ echo $PEERSERVICEENDPOINT
+nd-4MHB4EKFCRF7VBHXZE2ZU4F6GY.m-B7YYBFY4GREBZLPCO2SUS4GP3I.n-WDG36TTUD5HEJORZUPF4REKMBI.managedblockchain.us-east-1.amazonaws.com:30003
+
+```
+Now we need the latest version of PEM file.  It will overwrite the exisiting file in the home directory.
+
+```
+aws s3 cp s3://us-east-1.managedblockchain/etc/managedblockchain-tls-chain.pem  /home/ec2-user/managedblockchain-tls-chain.pem
+```
+
+
+
+
+
+
+
+
+
 
 
 
