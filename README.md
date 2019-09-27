@@ -18,7 +18,7 @@ PICTURE of aAWS architecture
 I have used the CLoud9 IDE by AWS because In the beginning I was working in the private VPC and there was no easy way to connect to tthe 
 to the private VPC.
 
-Step 1: 
+Step 1: (Cloud9 instance setup, not mandatory.I will just use its terminal.)
 
 1. Start the AWS Cloud9 instance.
 2. Clone the repo :
@@ -26,7 +26,37 @@ Step 1:
 ```
 cd ~
 git clone https://github.com/aws-samples/non-profit-blockchain.git
+
 ```
+
+Update the AWS CLI 
+
+```
+sudo pip install awscli --upgrade
+```
+
+
+
+##Create Fabric Client Node 
+
+The fabric client node will host the Fabric CLI.The  fabric client will be created in its own VPC in your AWS account.
+I have attached the Cloud Formation Template which will create the Fabric Clien node, the vpc and endpoints.
+
+The cloud formation template requires a number of parameter values.We have export these variables before running the script.
+
+In Cloud9:
+
+```
+export REGION=us-east-1
+export NETWORKID=<the network ID you created in Step1, from the Amazon Managed Blockchain Console>
+export NETWORKNAME=<the name you gave the network>
+```
+
+
+
+
+
+
 
 
 
