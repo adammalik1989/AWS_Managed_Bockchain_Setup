@@ -232,6 +232,12 @@ If the channel creation times out, it's possible that the channel has still been
 
 
 
+Check that the block file now exists:
+
+```ls -lt /home/ec2-user/fabric-samples/chaincode/hyperledger/fabric/peer ```
+
+
+
 
 
 
