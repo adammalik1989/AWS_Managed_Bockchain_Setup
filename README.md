@@ -211,7 +211,12 @@ The output should look like this:
 
 ````
 
+It will create a file  `mychannel.block` in the CLI container in the directory 
+`/opt/home/fabric-samples/chaincode/hyperledger/fabric/peer`
 
+You can see the block file here:
+
+```ls -lt /home/ec2-user/fabric-samples/chaincode/hyperledger/fabric/peer```
 
 
 
