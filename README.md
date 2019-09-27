@@ -47,8 +47,8 @@ The cloud formation template requires a number of parameter values.We have expor
 In Cloud9:
 
 ```
-export REGION=us-east-1
-export NETWORKID=<the network ID you created in Step1, from the Amazon Managed Blockchain Console>
+export REGION=<us-east-1> 
+export NETWORKID=<the network ID you created , from the Amazon Managed Blockchain Console>
 export NETWORKNAME=<the name you gave the network>
 ```
 
@@ -58,6 +58,34 @@ Now check the VPC endpoint and print it out.
 export VPCENDPOINTSERVICENAME=$(aws managedblockchain get-network --region $REGION --network-id $NETWORKID --query 'Network.VpcEndpointServiceName' --output text)
 echo $VPCENDPOINTSERVICENAME
 ```
+
+If the VPC endpoint is there with a value then run the given script.It will create  Cloud Formation Stack.
+You will see an error saying `key pair does not exist`. This is expected as the script
+will check whether the keypair exists before creating it.
+Developers from AWS has written the script in such a fashion that It won't overwrite any existing keypairs.
+
+
+```
+cd ~/non-profit-blockchain/ngo-fabric
+./3-vpc-client-node.sh
+```
+
+
+
+## Step 3  Enroll the identity in the Fabric client Node
+
+
+SSH into your client node created from the Cloud Formation Stack.
+
+```
+cd ~
+ssh ec2-user@<dns of EC2 instance> -i ~/<Fabric network name>-keypair.pem
+```
+
+Before enrolling the identity ,we need to do the following things:
+* Export the ENV variables that provides a context to Hyperledger Fabric.
+
+
 
 
 
