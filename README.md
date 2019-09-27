@@ -150,10 +150,70 @@ source fabric-exports.sh
 
 # Step 4  Update the configtx channel configuration :
 
+The  configtx contains the channel configuration.
 
 Update the configtx channel configuration. The Name and ID fields should be update with member ID.
 
 All the IDs like member ID you will get from AWS Managed Blockchain Service ( Step 1 explained).
+
+````
+################################################################################
+#
+#   Section: Organizations
+#
+#   - This section defines the different organizational identities which will
+#   be referenced later in the configuration.
+#
+################################################################################
+Organizations:
+    - &Org1
+            # DefaultOrg defines the organization which is used in the sampleconfig
+            # of the fabric.git development environment
+        Name: MemberID
+            # ID to load the MSP definition as
+        ID: MemberID
+        MSPDir: /opt/home/admin-msp
+            # AnchorPeers defines the location of peers which can be used
+            # for cross org gossip communication.  Note, this value is only
+            # encoded in the genesis block in the Application section context    
+        AnchorPeers:    
+            - Host: 
+              Port:    
+
+################################################################################
+#
+#   SECTION: Application
+#
+#   - This section defines the values to encode into a config transaction or
+#   genesis block for application related parameters
+#
+################################################################################
+Application: &ApplicationDefaults
+        # Organizations is the list of orgs which are defined as participants on
+        # the application side of the network
+    Organizations:
+
+################################################################################
+#
+#   Profile
+#
+#   - Different configuration profiles may be encoded here to be specified
+#   as parameters to the configtxgen tool
+#
+################################################################################
+Profiles:
+    OneOrgChannel:
+        Consortium: AWSSystemConsortium
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                - *Org1
+
+
+````
+
+
+
 
 
 
