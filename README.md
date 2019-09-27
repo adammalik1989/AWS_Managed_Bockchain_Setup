@@ -3,8 +3,8 @@
 
 This a detailed description of setting up the AWS Managed Blockchain Service and  Blockchain Client Node.
 There are two components here we will work on:
-*AWS Managed Blockchain Service 
-*Blockchain Client Node.
+* AWS Managed Blockchain Service 
+* Blockchain Client Node.
 
 PICTURE of aAWS architecture
 
@@ -12,7 +12,7 @@ PICTURE of aAWS architecture
 
 
 
-##Setting up the Client Node  ( for e.g. BMW AG)
+## Setting up the Client Node  ( for e.g. BMW AG)
 
 
 I have used the CLoud9 IDE by AWS because In the beginning I was working in the private VPC and there was no easy way to connect to tthe 
@@ -37,7 +37,7 @@ sudo pip install awscli --upgrade
 
 
 
-##Create Fabric Client Node 
+## Create Fabric Client Node 
 
 The fabric client node will host the Fabric CLI.The  fabric client will be created in its own VPC in your AWS account.
 I have attached the Cloud Formation Template which will create the Fabric Clien node, the vpc and endpoints.
