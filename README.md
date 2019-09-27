@@ -328,6 +328,90 @@ You should see:
 
 
 
+## Step 8 - Install chaincode on your peer node
+On the Fabric client node.
+
+Install chaincode on Fabric peer.
+
+Execute the following script:
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode install -n $CHAINCODENAME -v $CHAINCODEVERSION -p $CHAINCODEDIR
+```
+
+You should see:
+
+```
+2018-11-26 21:41:46.585 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+2018-11-26 21:41:46.585 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+2018-11-26 21:41:48.004 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" > 
+```
+
+## Step 9 - Instantiate the chaincode on the channel
+On the Fabric client node.
+
+Instantiate chaincode on Fabric channel. This statement may take around 30 seconds, and you
+won't see a specific success response.
+
+Execute the following script:
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode instantiate -o $ORDERER -C $CHANNEL -n $CHAINCODENAME -v $CHAINCODEVERSION \
+    -c '{"Args":["init","a","100","b","200"]}' --cafile $CAFILE --tls
+```
+
+You should see:
+
+```
+2018-11-26 21:41:53.738 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+2018-11-26 21:41:53.738 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+```
+
+## Step 10 - Query the chaincode
+On the Fabric client node.
+
+Query the chaincode on Fabric peer.
+
+Execute the following script:
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode query -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["query","a"]}' 
+```
+
+You should see:
+
+```
+100
+```
+
+## Step 11 - Invoke a transaction
+On the Fabric client node.
+
+Invoke a Fabric transaction.
+
+Execute the following script:
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode invoke -o $ORDERER -C $CHANNEL -n $CHAINCODENAME \
+    -c '{"Args":["invoke","a","b","10"]}' --cafile $CAFILE --tls
+```
+
+You should see:
+
+```
+2018-11-26 21:45:20.935 UTC [chaincodeCmd] chaincodeInvokeOrQuery -> INFO 001 Chaincode invoke successful. result: status:200 
+``
+
+
+
 
 
 
