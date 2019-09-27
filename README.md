@@ -120,6 +120,25 @@ Now we need the latest version of PEM file.  It will overwrite the exisiting fil
 aws s3 cp s3://us-east-1.managedblockchain/etc/managedblockchain-tls-chain.pem  /home/ec2-user/managedblockchain-tls-chain.pem
 ```
 
+Finally, we are  going to enrolling an ADMIN Identity with the Fabric CA. We will utilize this identity to administer the whole network.
+
+```
+export PATH=$PATH:/home/ec2-user/go/src/github.com/hyperledger/fabric-ca/bin
+cd ~
+fabric-ca-client enroll -u https://$ADMINUSER:$ADMINPWD@$CASERVICEENDPOINT --tls.certfiles /home/ec2-user/managedblockchain-tls-chain.pem -M /home/ec2-user/admin-msp 
+
+
+```
+
+Copying the certificates into a new directory:
+
+```
+mkdir -p /home/ec2-user/admin-msp/admincerts
+cp ~/admin-msp/signcerts/* ~/admin-msp/admincerts/
+cd ~/non-profit-blockchain/ngo-fabric
+
+```
+
 
 
 
