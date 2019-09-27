@@ -242,6 +242,7 @@ Check that the block file now exists:
 
 
 
+# Step5 Join your peer node the channel 
 
 
 
