@@ -138,12 +138,17 @@ cp ~/admin-msp/signcerts/* ~/admin-msp/admincerts/
 cd ~/non-profit-blockchain/ngo-fabric
 
 ```
+  One more thing, if you are restarting the ec2 instance you have to source the file again as follows:
+
+```
+  cd ~/non-profit-blockchain/ngo-fabric
+source fabric-exports.sh
+```
 
 
 
 
-
-
+# Step 4  Update the configtx channel configuration :
 
 
 
