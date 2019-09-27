@@ -415,7 +415,37 @@ You should see:
 
 
 
+## Step 12 - Query the chaincode again and check the change in value
+On the Fabric client node.
 
+Query the chaincode on the Fabric peer and check the change in value. This proves the success of the invoke
+transaction. If you execute the query immediately after the invoke, you may notice that the data hasn't changed.
+Any idea why? There should be a gap of (roughly) 2 seconds between the invoke and query.
+
+Invoking a transaction in Fabric involves a number of steps, including:
+
+* Sending the transaction to the endorsing peers for simulation and endorsement
+* Packaging the endorsements from the peers
+* Sending the packaged endorsements to the ordering service for ordering
+* The ordering service grouping the transactions into blocks (which are created every 2 seconds, by default)
+* The ordering service sending the blocks to all peer nodes for validating and committing to the ledger
+
+Only after the transactions in the block have been committed to the ledger can you read the
+new value from the ledger (or more specifically, from the world state key-value store).
+
+Execute the following script:
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode query -C $CHANNEL -n $CHAINCODENAME -c '{"Args":["query","a"]}' 
+```
+
+You should see:
+
+```
+90
+```
 
 
 
