@@ -79,12 +79,22 @@ SSH into your client node created from the Cloud Formation Stack.
 
 ```
 cd ~
-ssh ec2-user@<dns of EC2 instance> -i ~/<Fabric network name>-keypair.pem
+ssh ec2-user@<dns of EC2 instance> -i ~/< name>-keypair.pem
 ```
 
 Before enrolling the identity ,we need to do the following things:
 * Export the ENV variables that provides a context to Hyperledger Fabric.
 
+
+Create the file that includes the ENV export values that define your Fabric network configuration.
+
+```
+cd ~/non-profit-blockchain/ngo-fabric
+cp templates/exports-template.sh fabric-exports.sh
+vi fabric-exports.sh
+```
+
+Now update the export statements and 
 
 
 
