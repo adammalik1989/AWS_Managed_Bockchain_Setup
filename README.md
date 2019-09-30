@@ -523,8 +523,33 @@ instantiated once on a channel)
 ```
 
 
+## Step 4 - Query the chaincode
 
+Query all function
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode query -C mychannel -n our_project -c '{"Args":["queryAll"]}'
+```
 
+Expected response:
+This is correct as we do not have any  in our network yet. We'll add one in the next step.
+
+```
+[]
+```
+
+## Step 5 - Invoke a transaction
+
+Let's add some data to Fabric. Execute the transaction below:
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
+    cli peer chaincode invoke -C mychannel -n our_project \
+    -c  '{"Args":["create_data","1","2","3"]}' -o $ORDERER --cafile /opt/home/managedblockchain-tls-chain.pem --tls
+
+```
 
 
 
