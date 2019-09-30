@@ -451,24 +451,44 @@ You should see:
 
 ## Copying the chaicode in the CLI container
 
-The Fabric CLI container that is running on your Fabric client node (do docker ps to see it) mounts a folder from the Fabric client node EC2 instance: ```/home/ec2-user/fabric-samples/chaincode.```You can see this by looking at the docker config. Look at the Mounts section in the output where you'll see /home/ec2-user/fabric-samples/chaincode mounted into the Docker container:
+The Fabric CLI container that is running on your Fabric client node (do docker ps to see it) mounts a folder from the Fabric client node EC2 instance: ```/home/ec2-user/fabric-samples/chaincode.``` .
+You can see this by looking at the docker config. Look at the Mounts section in the output where you'll see
+```/home/ec2-user/fabric-samples/chaincode``` mounted into the Docker container:
 
-docker inspect cli
+```docker inspect cli ```
+
+You should already have this folder on your Fabric client node as it was created earlier. 
+Copying the chaincode into this folder will make it accessible inside the Fabric CLI container.
+
+```
+cd ~
+/fabric-samples/chaincode/our_project
+```
 
 
-
-## Installing the chaincode 
+## Installing the chaincode on the peer
 
 Now we are ready to install our project's chaincode on the peers.
+-l stands for the language we use Nodejs or Go.
+
+
 
 ```
 
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" -e "CORE_PEER_ADDRESS=$PEER"  \
+    cli peer chaincode install -n our_project -l node -v v0 -p /opt/gopath/src/github.com/our_project
 
 ```
 
+Output expected:
 
-
-
+```
+2018-11-15 06:39:47.625 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+2018-11-15 06:39:47.625 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
+2018-11-15 06:39:47.625 UTC [container] WriteFolderToTarPackage -> INFO 003 rootDirectory = /opt/gopath/src/github.com/ngo
+2018-11-15 06:39:47.636 UTC [chaincodeCmd] install -> INFO 004 Installed remotely response:<status:200 
+```
 
 
 
