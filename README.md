@@ -28,16 +28,18 @@ Blockchain Client Node.
 ## 2. Setting up the Client Node  ( for e.g. BMW AG)
 
 
-I have used the Cloud9 terminal by AWS throughout the setup because my EC2 instance is in public VPC working in the private VPC and there was no easy way to connect to the ec2 instance in the  private VPC.
+I have used the Cloud9 terminal by AWS throughout the setup because my EC2 instance is in public VPC and it's a easy way to
+conn
 
 Step 1: (Cloud9 instance setup, not mandatory.I will just use its terminal.)
 
 1. Start the AWS Cloud9 instance.
 2. Clone the repo :
 
+
 ```
 cd ~
-git clone https://github.com/aws-samples/AWS_Managed_Bockchain_Setup.git
+git clone https://github.com/sjais789/AWS_Managed_Bockchain_Setup.git
 
 
 ```
@@ -85,7 +87,7 @@ cd ~/non-profit-blockchain/ngo-fabric
 
 
 
-## Step 3  Enroll the identity in the Fabric client Node
+## Step 1  Enroll the identity in the Fabric client Node
 
 
 SSH into your client node created from the Cloud Formation Stack.
@@ -161,7 +163,7 @@ source fabric-exports.sh
 
 
 
-# Step 4  Update the configtx channel configuration :
+# Step 2  Update the configtx channel configuration :
 
 The  configtx contains the channel configuration.
 
@@ -254,7 +256,7 @@ Profiles:
 
 
 
-# Step 5 Create a Fabric Channel 
+## Step 3: Create a Fabric Channel 
 
 We have to create a Fabric Channel.
 
@@ -315,7 +317,7 @@ Check that the block file now exists:
 
 
 
-## Step5 Join your peer node the channel 
+## Step 4: Join your peer node the channel 
 
 
 
@@ -341,7 +343,7 @@ You should see:
 
 
 
-## Step 8 - Install chaincode on your peer node
+## Step 5: - Install chaincode on your peer node
 On the Fabric client node.
 
 Install chaincode on Fabric peer.
@@ -362,7 +364,7 @@ You should see:
 2018-11-26 21:41:48.004 UTC [chaincodeCmd] install -> INFO 003 Installed remotely response:<status:200 payload:"OK" > 
 ```
 
-## Step 9 - Instantiate the chaincode on the channel
+## Step 6: - Instantiate the chaincode on the channel
 On the Fabric client node.
 
 Instantiate chaincode on Fabric channel. This statement may take around 30 seconds, and you
@@ -384,7 +386,7 @@ You should see:
 2018-11-26 21:41:53.738 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
 ```
 
-## Step 10 - Query the chaincode
+## Step 7: - Query the chaincode
 On the Fabric client node.
 
 Query the chaincode on Fabric peer.
@@ -403,7 +405,7 @@ You should see:
 100
 ```
 
-## Step 11 - Invoke a transaction
+## Step 8: - Invoke a transaction
 On the Fabric client node.
 
 Invoke a Fabric transaction.
@@ -428,7 +430,7 @@ You should see:
 
 
 
-## Step 12 - Query the chaincode again and check the change in value
+## Step 9: - Query the chaincode again and check the change in value
 On the Fabric client node.
 
 Query the chaincode on the Fabric peer and check the change in value. This proves the success of the invoke
@@ -463,7 +465,7 @@ You should see:
 
 
 
-## Copying the chaicode in the CLI container
+## Step 10: Copying the chaicode in the CLI container
 
 The Fabric CLI container that is running on your Fabric client node (do docker ps to see it) mounts a folder from the Fabric client node EC2 instance: ```/home/ec2-user/fabric-samples/chaincode.``` .
 You can see this by looking at the docker config. Look at the Mounts section in the output where you'll see
@@ -480,7 +482,7 @@ cd ~
 ```
 
 
-## Installing the chaincode on the peer
+##  Step 11: Installing the chaincode on the peer
 
 Now we are ready to install our project's chaincode on the peers.
 -l stands for the language we use Nodejs or Go.
@@ -509,7 +511,7 @@ Output expected:
 
 
 
-## Step 3 - Instantiate the chaincode on the channel
+## Step 12: - Instantiate the chaincode on the channel
 
 Instantiation initializes the chaincode on the channel, i.e. it binds the chaincode to a specific channel.
 Instantiation is treated as a Fabric transaction. In fact, when chaincode is instantiated, the Init function
@@ -539,7 +541,7 @@ instantiated once on a channel)
 
 
 
-## Step 5 - Invoke a transaction
+## Step 13: - Invoke a transaction
 
 Let's add some data to Fabric. Execute the transaction below:
 
@@ -554,7 +556,7 @@ docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt
 ```
 
 
-## Step 4 - Query the chaincode
+## Step 14: - Query the chaincode
 
 I have assumed that a ```queryAll```function in your chaincode.
 
@@ -576,7 +578,7 @@ After the completion of these steps,
 
 * Setup the REST API Server 
 * Connecting the UI 
-* Adding the new members in the Blockchain network
+* Adding the new members in the Blockchain network.
 
 
 
