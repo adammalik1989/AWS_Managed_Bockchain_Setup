@@ -449,6 +449,22 @@ You should see:
 
 
 
+## Copying the chaicode in the CLI container
+
+The Fabric CLI container that is running on your Fabric client node (do docker ps to see it) mounts a folder from the Fabric client node EC2 instance: ```/home/ec2-user/fabric-samples/chaincode.```You can see this by looking at the docker config. Look at the Mounts section in the output where you'll see /home/ec2-user/fabric-samples/chaincode mounted into the Docker container:
+
+docker inspect cli
+
+
+
+## Installing the chaincode 
+
+Now we are ready to install our project's chaincode on the peers.
+
+```
+
+
+```
 
 
 
