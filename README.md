@@ -8,7 +8,7 @@ There are two components here we will work on:
 * Blockchain Client Node.
 
 PICTURE of AWS architecture
-![](images/AmazonManagedBlockchain.png "Amazon Managed Blockchain")
+![](images/images.png "Amazon Managed Blockchain")
 
 
 
