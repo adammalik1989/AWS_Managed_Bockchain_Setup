@@ -16,7 +16,7 @@ There are two components here we will work on:
 
 
 
-## Setting up  AWS Managed Blockchain Service
+## 1. Setting up AWS Managed Blockchain Service
 
 The AWS Blockchain service looks like the picture given below. It will give us the endpoints which we will use in the 
 Blockchain Client Node.
@@ -24,10 +24,11 @@ Blockchain Client Node.
 
 ![](images/images1.png "Amazon Managed Blockchain")
 
-## Setting up the Client Node  ( for e.g. BMW AG)
+
+## 2. Setting up the Client Node  ( for e.g. BMW AG)
 
 
-I have used the Cloud9 terminal by AWS  throughout the setup because my EC2 instance is in public VPC working in the private VPC and there was no easy way to connect to the ec2 instance in the  private VPC.
+I have used the Cloud9 terminal by AWS throughout the setup because my EC2 instance is in public VPC working in the private VPC and there was no easy way to connect to the ec2 instance in the  private VPC.
 
 Step 1: (Cloud9 instance setup, not mandatory.I will just use its terminal.)
 
@@ -570,6 +571,12 @@ Expected response:
 ```
 
 
+
+After the completion of these steps, 
+
+* Setup the REST API Server 
+* Connecting the UI 
+* Adding the new members in the Blockchain network
 
 
 
