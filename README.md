@@ -4,8 +4,8 @@
 This a detailed description of setting up the AWS Managed Blockchain Service and  Blockchain Client Node.
 
 There are two components here we will work on:
-* AWS Managed Blockchain Service.
-* Blockchain Client Node.
+1. AWS Managed Blockchain Service.
+2. Blockchain Client Node.
 
 
 ![](images/images.png "Amazon Managed Blockchain")
