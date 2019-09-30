@@ -7,7 +7,7 @@ There are two components here we will work on:
 * AWS Managed Blockchain Service.
 * Blockchain Client Node.
 
-PICTURE of AWS architecture
+
 ![](images/images.png "Amazon Managed Blockchain")
 
 
