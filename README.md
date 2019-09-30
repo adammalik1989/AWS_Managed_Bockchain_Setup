@@ -495,10 +495,32 @@ Output expected:
 
 
 
+## Step 3 - Instantiate the chaincode on the channel
+
+Instantiation initializes the chaincode on the channel, i.e. it binds the chaincode to a specific channel.
+Instantiation is treated as a Fabric transaction. In fact, when chaincode is instantiated, the Init function
+on the chaincode is called. Instantiation also sets the endorsement policy for this version of the chaincode
+on this channel. In the example below we are not explictly passing an endorsement policy, so the default
+policy of 'any member of the organizations in the channel' is applied.
+
+It can take up to 30 seconds to instantiate chaincode on the channel.
+
+```
+docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
+    -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" -e "CORE_PEER_ADDRESS=$PEER"  \
+    cli peer chaincode instantiate -o $ORDERER -C mychannel -n our_project -v v0 -c '{"Args":["init"]}' --cafile /opt/home/managedblockchain-tls-chain.pem --tls
+```
+
+Expected response:
+(Note this might fail if the chaincode has been previously instantiated. Chaincode only needs to be
+instantiated once on a channel)
+
+```
+2018-11-15 06:41:02.847 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 001 Using default escc
+2018-11-15 06:41:02.847 UTC [chaincodeCmd] checkChaincodeCmdParams -> INFO 002 Using default vscc
 
 
-
-
+```
 
 
 
