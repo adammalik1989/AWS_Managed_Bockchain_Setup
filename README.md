@@ -14,6 +14,16 @@ There are two components here we will work on:
 
 
 
+
+
+## Setting up  AWS Managed Blockchain Service
+
+The AWS Blockchain service looks like the picture given below. It will give us the endpoints which we will use in the 
+Blockchain Client Node.
+
+
+![](images/images1.png "Amazon Managed Blockchain")
+
 ## Setting up the Client Node  ( for e.g. BMW AG)
 
 
