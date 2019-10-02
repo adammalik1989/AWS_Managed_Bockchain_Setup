@@ -29,7 +29,7 @@ Blockchain Client Node.
 
 
 I have used the Cloud9 terminal by AWS throughout the setup because my EC2 instance is in public VPC and it's a easy way to
-conn
+connect to it.
 
 Step 1: (Cloud9 instance setup, not mandatory.I will just use its terminal.)
 
@@ -43,6 +43,7 @@ git clone https://github.com/sjais789/AWS_Managed_Bockchain_Setup.git
 
 
 ```
+Clone this repo. 
 
 Update the AWS CLI 
 
@@ -247,15 +248,6 @@ Profiles:
 
 
 
-
-
-
-
-
-
-
-
-
 ## Step 3: Create a Fabric Channel 
 
 We have to create a Fabric Channel.
@@ -344,6 +336,7 @@ You should see:
 
 
 ## Step 5: - Install chaincode on your peer node
+
 On the Fabric client node.
 
 Install chaincode on Fabric peer.
@@ -365,6 +358,7 @@ You should see:
 ```
 
 ## Step 6: - Instantiate the chaincode on the channel
+
 On the Fabric client node.
 
 Instantiate chaincode on Fabric channel. This statement may take around 30 seconds, and you
@@ -387,6 +381,7 @@ You should see:
 ```
 
 ## Step 7: - Query the chaincode
+
 On the Fabric client node.
 
 Query the chaincode on Fabric peer.
