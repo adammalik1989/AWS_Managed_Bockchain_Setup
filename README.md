@@ -22,6 +22,7 @@ The AWS Blockchain service looks like the picture given below. It will give us t
 Blockchain Client Node.
 
 
+
 ![](images/images1.png "Amazon Managed Blockchain")
 
 
@@ -43,7 +44,9 @@ git clone https://github.com/sjais789/AWS_Managed_Bockchain_Setup.git
 
 
 ```
-Clone this repo. 
+Clone this repo.
+(
+
 
 Update the AWS CLI 
 
@@ -80,6 +83,7 @@ You will see an error saying `key pair does not exist`. This is expected as the 
 will check whether the keypair exists before creating it.
 Developers from AWS has written the script in such a fashion that It won't overwrite any existing keypairs.
 
+* this_repo_name= AWS_Managed_Blockchain_Setup, in this case, I might change the name of the repo when I will move this repo to Bitbucket or AWS Code commits.So,just check the repo name and replace it to 'this_repo_name'.
 
 ```
 cd ~/this_repo_name/
