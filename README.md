@@ -18,8 +18,7 @@ There are two components here we will work on:
 
 ## 1. Setting up AWS Managed Blockchain Service
 
-The AWS Blockchain service looks like the picture given below. It will give us the endpoints which we will use in the 
-Blockchain Client Node.
+The AWS Blockchain service looks like the picture given below. It will give us the endpoints which we will use in setting up the Blockchain Client Node.
 
 
 
@@ -44,8 +43,9 @@ git clone https://github.com/sjais789/AWS_Managed_Bockchain_Setup.git
 
 
 ```
-Clone this repo.
-(
+Clone the repo.
+
+
 
 
 Update the AWS CLI 
