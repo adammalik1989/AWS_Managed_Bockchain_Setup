@@ -82,7 +82,7 @@ Developers from AWS has written the script in such a fashion that It won't overw
 
 
 ```
-cd ~/non-profit-blockchain/ngo-fabric
+cd ~/this_repo_name/
 ./3-vpc-client-node.sh
 ```
 
@@ -105,14 +105,14 @@ Before enrolling the identity ,we need to do the following things:
 Create the file that includes the ENV export values that define your Fabric network configuration.
 
 ```
-cd ~/non-profit-blockchain/ngo-fabric
+cd ~/this_repo_name/
 cp templates/exports-template.sh fabric-exports.sh
 vi fabric-exports.sh
 ```
 
 Now update the export statements and then source the file again.
 
-````cd ~/non-profit-blockchain/ngo-fabric
+````cd ~/this_repo_name/
 source fabric-exports.sh
 
 ````
@@ -151,13 +151,13 @@ Copying the certificates into a new directory:
 ```
 mkdir -p /home/ec2-user/admin-msp/admincerts
 cp ~/admin-msp/signcerts/* ~/admin-msp/admincerts/
-cd ~/non-profit-blockchain/ngo-fabric
+cd ~/this_repo/
 
 ```
   One more thing, if you are restarting the ec2 instance you have to source the file again as follows:
 
 ```
-  cd ~/non-profit-blockchain/ngo-fabric
+  cd ~/this_repo_name/
 source fabric-exports.sh
 ```
 
@@ -429,9 +429,7 @@ You should see:
 On the Fabric client node.
 
 Query the chaincode on the Fabric peer and check the change in value. This proves the success of the invoke
-transaction. If you execute the query immediately after the invoke, you may notice that the data hasn't changed.
-Any idea why? There should be a gap of (roughly) 2 seconds between the invoke and query.
-
+transaction.
 Invoking a transaction in Fabric involves a number of steps, including:
 
 * Sending the transaction to the endorsing peers for simulation and endorsement
@@ -473,7 +471,7 @@ Copying the chaincode into this folder will make it accessible inside the Fabric
 
 ```
 cd ~
-/fabric-samples/chaincode/our_project
+/fabric-samples/chaincode/our_project_chaincode
 ```
 
 
@@ -488,9 +486,11 @@ Now we are ready to install our project's chaincode on the peers.
 
 docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
     -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" -e "CORE_PEER_ADDRESS=$PEER"  \
-    cli peer chaincode install -n our_project -l node -v v0 -p /opt/gopath/src/github.com/our_project
+    cli peer chaincode install -n our_project_chaincode -l node -v v0 -p /opt/gopath/src/github.com/our_project_chaincode
 
 ```
+language : Node   ( Node JS language)
+Name of Chaincode_folder where our chaincode files are stored : our_chaincode_folder
 
 Output expected:
 
@@ -519,7 +519,7 @@ It can take up to 30 seconds to instantiate chaincode on the channel.
 ```
 docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
     -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" -e "CORE_PEER_ADDRESS=$PEER"  \
-    cli peer chaincode instantiate -o $ORDERER -C mychannel -n our_project -v v0 -c '{"Args":["init"]}' --cafile /opt/home/managedblockchain-tls-chain.pem --tls
+    cli peer chaincode instantiate -o $ORDERER -C mychannel -n our_project_chaincode -v v0 -c '{"Args":["init"]}' --cafile /opt/home/managedblockchain-tls-chain.pem --tls
 ```
 
 Expected response:
@@ -545,7 +545,7 @@ I have assumed that there is a ```create_data``` function in your chaincode.
 ```
 docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
     -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
-    cli peer chaincode invoke -C mychannel -n our_project \
+    cli peer chaincode invoke -C mychannel -n our_project_chaincode \
     -c  '{"Args":["create_data","1","2","3"]}' -o $ORDERER --cafile /opt/home/managedblockchain-tls-chain.pem --tls
 
 ```
@@ -558,7 +558,7 @@ I have assumed that a ```queryAll```function in your chaincode.
 ```
 docker exec -e "CORE_PEER_TLS_ENABLED=true" -e "CORE_PEER_TLS_ROOTCERT_FILE=/opt/home/managedblockchain-tls-chain.pem" \
     -e "CORE_PEER_ADDRESS=$PEER" -e "CORE_PEER_LOCALMSPID=$MSP" -e "CORE_PEER_MSPCONFIGPATH=$MSP_PATH" \
-    cli peer chaincode query -C mychannel -n our_project -c '{"Args":["queryAll"]}'
+    cli peer chaincode query -C mychannel -n our_project_chaincode -c '{"Args":["queryAll"]}'
 ```
 
 Expected response:
@@ -574,6 +574,8 @@ After the completion of these steps,
 * Setup the REST API Server 
 * Connecting the UI 
 * Adding the new members in the Blockchain network.
+
+
 
 
 
